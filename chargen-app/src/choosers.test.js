@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 import {ChooseHomeworld, ChooseBackground} from './choosers';
 
-
 function stub_on_change(val) {
 	return val;
 }

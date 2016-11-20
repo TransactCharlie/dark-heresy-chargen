@@ -5,7 +5,7 @@ import {PrintObject} from './helpers';
 import {HOMEWORLDS} from './constants';
 
 
-export class App extends React.Component {
+export default class App extends React.Component {
 
   constructor(props) {
     super(props);

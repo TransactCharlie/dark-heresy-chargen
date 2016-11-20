@@ -1,4 +1,12 @@
 import React from 'react';
+import {BACKGROUNDS, HOMEWORLDS} from './constants';
+
+
+function mapObject(object, callback) {
+  return Object.keys(object).map(function (key) {
+    return callback(key, object[key]);
+  });
+}
 
 export class ChooseHomeworld extends React.Component {
   constructor(props) {
@@ -17,9 +25,11 @@ export class ChooseHomeworld extends React.Component {
       <fieldset>
         <legend>Choose Homeworld</legend>
         <select value={homeworld} onChange={this.handleChange}>
-          <option disabled selected value="">-- Select Homeworld --</option>
-          <option value="FERAL">Feral World</option>
-          <option value="HIVE">Hive World</option>
+          <option disabled value="">-- Select Homeworld --</option>
+
+        {mapObject(HOMEWORLDS, function(k,v) {
+          return <option key={k} value={k}>{v.display_text}</option>;
+         })}
         </select>
       </fieldset>
     );
@@ -43,9 +53,11 @@ export class ChooseBackground extends React.Component {
       <fieldset>
         <legend>Choose Background</legend>
         <select value={background} onChange={this.handleChange}>
-          <option disabled selected value="">-- Select Background --</option>
-          <option value="OUTCAST">Outcast</option>
-          <option value="GUARDSMAN">Imperial Guard</option>
+          <option disabled value="">-- Select Background --</option>
+
+          {mapObject(BACKGROUNDS, function(k,v) {
+            return <option key={k} value={k}>{v.display_text}</option>;
+           })}
         </select>
       </fieldset>
     );
