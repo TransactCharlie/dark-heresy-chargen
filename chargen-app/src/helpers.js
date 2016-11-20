@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class DumpObject extends React.Component {
+export class PrintObject extends React.Component {
 
     render(){
         const jd = JSON.stringify(this.props.payload);

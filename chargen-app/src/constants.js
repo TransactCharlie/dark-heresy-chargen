@@ -1,4 +1,4 @@
-export let homeworlds = {
+export const HOMEWORLDS = {
   FERAL: {
     characteristic_bonuses: ["STRENGTH", "TOUGHNESS"],
     characteristic_weaknesses: ["INFLUENCE"],

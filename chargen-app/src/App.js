@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import {ChooseHomeworld, ChooseBackground} from './choosers';
-import homeworlds from './constants';
-import DumpObject from './helpers';
+import {PrintObject} from './helpers';
+import {HOMEWORLDS} from './constants';
 
 
 export class App extends React.Component {
@@ -24,14 +24,14 @@ export class App extends React.Component {
   handleHomeworldChange(hm) {
     this.setState({
       homeworld: hm,
-      characteristic_bonuses: homeworlds[hm].characteristic_bonuses,
-      characteristic_weaknesses: homeworlds[hm].characteristic_weaknesses,
-      homeworld_aptitudes: homeworlds[hm].aptitudes
+      characteristic_bonuses: HOMEWORLDS[hm].characteristic_bonuses,
+      characteristic_weaknesses: HOMEWORLDS[hm].characteristic_weaknesses,
+      homeworld_aptitudes: HOMEWORLDS[hm].aptitudes
     });
   }
 
-  handleBackgroundChange(background) {
-    this.setState({background: background});
+  handleBackgroundChange(bg) {
+    this.setState({background: bg});
   }
 
   render() {
@@ -42,7 +42,7 @@ export class App extends React.Component {
       <div>
         <ChooseHomeworld homeworld={homeworld} onChange={this.handleHomeworldChange}/>
         <ChooseBackground background={background} onChange={this.handleBackgroundChange}/>
-        <DumpObject payload={character}/>
+        <PrintObject payload={character}/>
       </div>
     );
   }

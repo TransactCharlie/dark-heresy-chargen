@@ -15,7 +15,7 @@ export class ChooseHomeworld extends React.Component {
 
     return (
       <fieldset>
-        <legend> Choose Homeworld</legend>
+        <legend>Choose Homeworld</legend>
         <select value={homeworld} onChange={this.handleChange}>
           <option disabled selected value="">-- Select Homeworld --</option>
           <option value="FERAL">Feral World</option>
