@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import {ChooseHomeworld, ChooseBackground} from './choosers';
-import {PrintObject} from './helpers';
-import {HOMEWORLDS} from './constants';
+import {ChooseBackground} from './backgrounds';
+import {ChooseHomeworld, HOMEWORLDS} from './homeworlds';
+import {PrintObject} from './utils';
 
 
 export default class App extends React.Component {
@@ -14,9 +14,11 @@ export default class App extends React.Component {
 
     this.state = {
       homeworld: "",
-      homeworld_aptitudes: [],
+      homeworld_aptitude: null,
       characteristic_bonuses: [],
-      characteristic_weaknesses: [],
+      characteristic_weakness: null,
+      wounds: null,
+      fate_points: null,
       background: ""
     };
   }
@@ -25,8 +27,10 @@ export default class App extends React.Component {
     this.setState({
       homeworld: hm,
       characteristic_bonuses: HOMEWORLDS[hm].characteristic_bonuses,
-      characteristic_weaknesses: HOMEWORLDS[hm].characteristic_weaknesses,
-      homeworld_aptitudes: HOMEWORLDS[hm].aptitudes
+      characteristic_weakness: HOMEWORLDS[hm].characteristic_weakness,
+      homeworld_aptitude: HOMEWORLDS[hm].aptitude,
+      wounds: HOMEWORLDS[hm].wounds,
+      fate_points: HOMEWORLDS[hm].fate_points
     });
   }
 

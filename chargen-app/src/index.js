@@ -5,7 +5,6 @@ import './index.css';
 
 ReactDOM.render(
   <div>
-    <h1>Index</h1>
     <App />
   </div>,
   document.getElementById('root')

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {PrintObject} from './helpers';
+import {PrintObject} from './utils';
 
 
 it('PrintObject without crashing', () => {
@@ -9,4 +9,3 @@ it('PrintObject without crashing', () => {
   const testobj={foo:"bar"};
   ReactDOM.render(<PrintObject payload={testobj}/>, div);
 });
-

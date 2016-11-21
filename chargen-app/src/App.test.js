@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {ChooseBackground, ChooseHomeworld} from './choosers';
-import {PrintObject} from './helpers';
+import {ChooseBackground} from './backgrounds';
+import {ChooseHomeworld} from './homeworlds';
+import {PrintObject} from './utils';
 
 function stub_on_change(val) {
 	return val;
