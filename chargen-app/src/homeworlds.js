@@ -30,6 +30,7 @@ export const HOMEWORLDS = {
     characteristic_bonuses: ["FELLOWSHIP", "INTELLIGENCE"],
     characteristic_weakness: "TOUGHNESS",
     aptitude: "FELLOWSHIP",
+    bonus: "Breeding will out.",
     wounds: 9,
     fate_points: 4,
     fate_roll_target_number: 10
@@ -44,6 +45,12 @@ export class DisplayHomeworldDetails extends React.Component {
             return (
                 <div>
                     <p>{HOMEWORLDS[homeworld].description}</p>
+                    <ul>
+                        <li>Wounds: {HOMEWORLDS[homeworld].wounds}</li>
+                        <li>Fate Points: {HOMEWORLDS[homeworld].fate_points}</li>
+                        <li>Bonus: {HOMEWORLDS[homeworld].bonus}</li>
+                        <li>Homeworld Aptitude: {HOMEWORLDS[homeworld].aptitude}</li>
+                    </ul>
                 </div>
             );
         }
@@ -67,7 +74,7 @@ export class ChooseHomeworld extends React.Component {
 
     return (
       <fieldset>
-        <legend>Choose Homeworld</legend>
+        <legend>Step1: Homeworld</legend>
         <select value={homeworld} onChange={this.handleChange}>
           <option disabled value="">-- Select Homeworld --</option>
 
