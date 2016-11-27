@@ -19,11 +19,11 @@ export default class App extends React.Component {
       characteristic_weakness: null,
       wounds: null,
       fate_points: null,
-      background: {
-          chosen_background: null,
-          chosen_aptitude: null
-      }
-        };
+      backgroundChoice: {
+        background: "",
+        aptitude: ""
+        }
+      };
   }
 
   handleHomeworldChange(hm) {
@@ -38,20 +38,19 @@ export default class App extends React.Component {
   }
 
   handleBackgroundChange(bg) {
-    this.setState({background: bg});
+    this.setState({backgroundChoice: bg});
   }
 
   render() {
     const homeworld = this.state.homeworld;
-    const background = this.state.background;
+    const backgroundChoice = this.state.backgroundChoice;
     const character = this.state;
     return (
         <div>
             <ChooseHomeworld homeworld={homeworld} onChange={this.handleHomeworldChange}/>
-            <ChooseBackground background={background.chosen_background} onChange={this.handleBackgroundChange}/>
+            <ChooseBackground backgroundChoice={backgroundChoice} onChange={this.handleBackgroundChange}/>
             <PrintObject payload={character}/>
         </div>
     );
-//    return (<ChooseBackground background={background} onChange={this.handleBackgroundChange}/>);
   }
 }

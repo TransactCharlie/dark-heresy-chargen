@@ -16,12 +16,14 @@ it('renders without crashing', () => {
 
 it('simplest combined renders', () => {
     const div = document.createElement('div');
-    const testobj = {foo:"bar"}
+		const backgroundChoice = {
+			background: "",
+			aptitude: ""
+		};
     ReactDOM.render(
       <div>
         <ChooseHomeworld homeworld={""} onChange={stub_on_change}/>
-        <ChooseBackground background={""} onChange={stub_on_change}/>
-        <PrintObject payload={testobj}/>
+        <ChooseBackground backgroundChoice={backgroundChoice} onChange={stub_on_change}/>
       </div>
     , div);
 })
