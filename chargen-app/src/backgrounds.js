@@ -1,14 +1,15 @@
 import React from 'react';
 import {mapObject} from './utils';
+import {aptitudes} from './enums';
 
 const BACKGROUNDS = {
     OUTCAST: {
         display_text: "Outcast",
-        aptitude_choice: ["SOCIAL", "FIELDCRAFT"]
+        aptitude_choice: [aptitudes.FIELDCRAFT, aptitudes.SOCIAL]
     },
     IMPERIAL_GUARD: {
         display_text: "Imperial Guard",
-        aptitude_choice: ["FIELDCRAFT", "LEADERSHIP"]
+        aptitude_choice: [aptitudes.FIELDCRAFT, aptitudes.LEADERSHIP]
     }
 };
 
