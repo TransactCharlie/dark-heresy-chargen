@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {ChooseHomeworld} from './homeworlds';
+import {ChooseHomeworld} from '../homeworlds';
 
 function stub_on_change(val) {
 	return val;

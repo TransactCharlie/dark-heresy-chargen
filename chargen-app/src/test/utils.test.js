@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {PrintObject} from './utils';
+import {PrintObject} from '../utils';
 
 
 it('PrintObject without crashing', () => {

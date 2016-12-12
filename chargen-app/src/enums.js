@@ -20,3 +20,8 @@ export const aptitudes = {
   FIELDCRAFT: "Fieldcraft",
   SOCIAL: "Social"
 };
+
+export const roles = {
+  ASSASSIN: "Assassin",
+  CHIRURGEON: "Chirurgeon"
+};

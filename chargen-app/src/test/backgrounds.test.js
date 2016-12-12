@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {ChooseBackground} from './backgrounds';
+import {ChooseBackground} from '../backgrounds';
 
 function stub_on_change(val) {
 	return val;
