@@ -22,6 +22,6 @@ export const aptitudes = {
 };
 
 export const roles = {
-  ASSASSIN: "Assassin",
-  CHIRURGEON: "Chirurgeon"
+  ASSASSIN: "ASSASSIN",
+  CHIRURGEON: "CHIRURGEON"
 };

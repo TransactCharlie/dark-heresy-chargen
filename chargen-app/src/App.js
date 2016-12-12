@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import {ChooseBackground} from './backgrounds';
 import {ChooseHomeworld, HOMEWORLDS} from './homeworlds';
+import {RoleForm} from './roles';
 import {PrintObject} from './utils';
 
 
@@ -11,6 +12,7 @@ export default class App extends React.Component {
     super(props);
     this.handleHomeworldChange = this.handleHomeworldChange.bind(this);
     this.handleBackgroundChange = this.handleBackgroundChange.bind(this);
+    this.handleRoleChange = this.handleRoleChange.bind(this);
 
     this.state = {
       homeworld: "",
@@ -22,7 +24,10 @@ export default class App extends React.Component {
       backgroundChoice: {
         background: "",
         aptitude: ""
-        }
+      },
+      roleChoice: {
+        "role": ""
+      }
       };
   }
 
@@ -41,15 +46,21 @@ export default class App extends React.Component {
     this.setState({backgroundChoice: bg});
   }
 
+  handleRoleChange(rl) {
+    this.setState({roleChoice: rl});
+  }
+
   render() {
     const homeworld = this.state.homeworld;
     const backgroundChoice = this.state.backgroundChoice;
+    const roleChoice = this.state.roleChoice;
     const character = this.state;
     return (
         <div>
-            <ChooseHomeworld homeworld={homeworld} onChange={this.handleHomeworldChange}/>
-            <ChooseBackground backgroundChoice={backgroundChoice} onChange={this.handleBackgroundChange}/>
-            <PrintObject payload={character}/>
+          <ChooseHomeworld homeworld={homeworld} onChange={this.handleHomeworldChange}/>
+          <ChooseBackground backgroundChoice={backgroundChoice} onChange={this.handleBackgroundChange}/>
+          <RoleForm roleChoice={roleChoice} onChange={this.handleRoleChange}/>
+          <PrintObject payload={character}/>
         </div>
     );
   }
