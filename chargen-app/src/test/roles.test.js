@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {ChooseRole} from '../roles';
+import {RoleForm} from '../roles';
 
 function stub_on_change(val) {
 	return val;
@@ -9,10 +9,10 @@ function stub_on_change(val) {
 
 it('ChooseBackground without crashing', () => {
   const div = document.createElement('div');
-  const testval={background: "", aptitude: ""};
+  const testval={"role": ""};
 
   ReactDOM.render(
-    <ChooseRole role={testval} onChange={stub_on_change}/>,
+		<RoleForm roleChoice={testval} onChange={stub_on_change}/>,
     div
   );
 });

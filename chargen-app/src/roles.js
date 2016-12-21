@@ -1,6 +1,6 @@
 import React from 'react';
-import {mapObject} from './utils';
 import {roles, aptitudes} from './enums';
+import {SimpleChooser} from './standard_components';
 
 const ROLE_DETAILS = {
   ASSASSIN: {
@@ -11,7 +11,10 @@ const ROLE_DETAILS = {
       aptitudes.PERCEPTION
     ],
     aptitude_choices: [
-      [aptitudes.BALLISTIC_SKILL, aptitudes.WEAPON_SKILL]
+      {
+        BALLISTIC_SKILL: aptitudes.BALLISTIC_SKILL,
+        WEAPON_SKILL: aptitudes.WEAPON_SKILL
+      }
     ]
   },
   CHIRURGEON: {
@@ -26,36 +29,13 @@ const ROLE_DETAILS = {
   }
 };
 
-export class ChooseRole extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(entity) {
-    const new_role = entity.target.value;
-    this.props.onChange(new_role);
-  }
-
-  render() {
-    const role = this.props.role;
-
-    return (
-      <select value={role} onChange={this.handleChange}>
-        <option disabled value="">-- Select Role --</option>
-        {mapObject(roles, function(k,v) {
-          return <option key={k} value={v}>{v}</option>;
-        })}
-      </select>
-    );
-  }
-}
-
 export class AptitudeForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {role: props.role};
   }
+
+  handleChange{t} {const f ="";}
 
   render() {
     const role = this.props.role;
@@ -63,13 +43,20 @@ export class AptitudeForm extends React.Component {
       return (<div>role: {role}</div>);
     }
 
-    const aptitude_choice = ROLE_DETAILS[role].set_aptitudes;
+    const set_aptitudes = ROLE_DETAILS[role].set_aptitudes;
+    const choose_aptitudes = ROLE_DETAILS[role].aptitude_choices;
 
     return (
       <div>
         <p>role: {role}</p>
         <ul>
-          {aptitude_choice.map(function(lv){return <li>{lv}</li>;})}
+          {set_aptitudes.map(function(lv){return <li>{lv}</li>;})}
+          {choose_aptitudes.map(
+            function(c) {
+              return
+                <li>
+                  <SimpleChooser selected={""} choices={c} onChange={this.handleAptitudeChange} defaultLabel={"-"}/>
+                </li>;})}
         </ul>
       </div>
     );
@@ -102,7 +89,7 @@ export class RoleForm extends React.Component {
     return (
       <fieldset>
         <legend>Choose Role</legend>
-        <ChooseRole role={role} onChange={this.handleRoleChange}/>
+        <SimpleChooser selected={role} choices={roles} onChange={this.handleRoleChange} defaultLabel={"--- Choose Role ---"}/>
         <AptitudeForm role={role} onChange={this.handleAptitudeChange}/>
       </fieldset>
     );

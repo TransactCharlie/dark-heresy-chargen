@@ -6,6 +6,10 @@ export function mapObject(object, callback) {
     });
 }
 
+export function mapList(l, callback) {
+  return l.map(function (v) { return callback(v); })}
+  
+
 export class PrintObject extends React.Component {
     render(){
         const jd = JSON.stringify(this.props.payload, null, 4);
