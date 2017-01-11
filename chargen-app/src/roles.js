@@ -4,25 +4,22 @@ import {roles, aptitudes} from './enums';
 
 const ROLE_DETAILS = {
   ASSASSIN: {
-    set_aptitudes: [
-      aptitudes.AGILITY,
-      aptitudes.FIELDCRAFT,
-      aptitudes.FINESSE,
-      aptitudes.PERCEPTION
-    ],
-    aptitude_choices: [
-      [aptitudes.BALLISTIC_SKILL, aptitudes.WEAPON_SKILL]
+    "aptitudes": [
+      ["AGILITY"],
+      ["FIELDCRAFT"],
+      ["FINESSE"],
+      ["PERCEPTION"],
+      ["BALLISTIC_SKILL", "WEAPON_SKILL"]
     ]
   },
   CHIRURGEON: {
-    set_aptitudes: [
-      aptitudes.FIELDCRAFT,
-      aptitudes.INTELLIGENCE,
-      aptitudes.KNOWLEDGE,
-      aptitudes.STRENGTH,
-      aptitudes.TOUGHNESS
-    ],
-    aptitude_choices: []
+    "aptitudes": [
+      ["FIELDCRAFT"],
+      ["INTELLIGENCE"],
+      ["KNOWLEDGE"],
+      ["STRENGTH"],
+      ["TOUGHNESS"]
+    ]
   }
 };
 
@@ -63,13 +60,13 @@ export class AptitudeForm extends React.Component {
       return (<div>role: {role}</div>);
     }
 
-    const aptitude_choice = ROLE_DETAILS[role].set_aptitudes;
+    const role_aptitudes = ROLE_DETAILS[role].aptitudes;
 
     return (
       <div>
         <p>role: {role}</p>
         <ul>
-          {aptitude_choice.map(function(lv){return <li>{lv}</li>;})}
+          {role_aptitudes.map(function(lv){return <li>{lv}</li>;})}
         </ul>
       </div>
     );
