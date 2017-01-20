@@ -1,27 +1,28 @@
 export const aptitudes = {
   // Characteristics
-  WEAPON_SKILL: "Weapon Skill",
-  BALLISTIC_SKILL: "Ballistic Skill",
-  STRENGTH: "Strength",
-  TOUGHNESS: "Toughness",
-  AGILITY: "Agility",
-  INTELLIGENCE: "Intelligence",
-  PERCEPTION: "Perception",
-  WILLPOWER: "Willpower",
-  FELLOWSHIP: "Fellowship",
+  WEAPON_SKILL: "WEAPON_SKILL",
+  BALLISTIC_SKILL: "BALLISTIC_SKILL",
+  STRENGTH: "STRENGTH",
+  TOUGHNESS: "TOUGHNESS",
+  AGILITY: "AGILITY",
+  INTELLIGENCE: "INTELLIGENCE",
+  PERCEPTION: "PERCEPTION",
+  WILLPOWER: "WILLPOWER",
+  FELLOWSHIP: "FELLOWSHIP",
   // Other Aptitudes
-  OFFENCE: "Offence",
-  FINESSE: "Finesse",
-  DEFENSE: "Defence",
-  PSYKER: "Psyker",
-  TECH: "Tech",
-  KNOWLEDGE: "Knowledge",
-  LEADERSHIP: "Leadership",
-  FIELDCRAFT: "Fieldcraft",
-  SOCIAL: "Social"
+  OFFENCE: "OFFENCE",
+  FINESSE: "FINESSE",
+  DEFENSE: "DEFENSE",
+  PSYKER: "PSYKER",
+  TECH: "TECH",
+  KNOWLEDGE: "KNOWLEDGE",
+  LEADERSHIP: "LEADERSHIP",
+  FIELDCRAFT: "FIELDCRAFT",
+  SOCIAL: "SOCIAL"
 };
 
 export const roles = {
   ASSASSIN: "ASSASSIN",
-  CHIRURGEON: "CHIRURGEON"
+  CHIRURGEON: "CHIRURGEON",
+  MYSTIC: "MYSTIC"
 };
