@@ -26,7 +26,8 @@ export default class App extends React.Component {
         aptitude: ""
       },
       roleChoice: {
-        "role": ""
+        "role": "",
+        "aptitudes": ["","","","",""]
       }
       };
   }
