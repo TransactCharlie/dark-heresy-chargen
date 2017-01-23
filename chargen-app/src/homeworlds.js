@@ -12,7 +12,7 @@ const HOMEWORLD_DETAILS = {
     display_text: "Feral World",
     description: "Primitive low tech world where the strong survive and feudal customs are prevalent.",
     characteristic_bonuses: ["STRENGTH", "TOUGHNESS"],
-    characteristic_weaknes: "INFLUENCE",
+    characteristic_weakness: "INFLUENCE",
     aptitude: "TOUGHNESS",
     bonus: "The Old Ways",
     wounds: 9,
