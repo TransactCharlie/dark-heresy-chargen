@@ -1,7 +1,10 @@
 import React from 'react';
-import {roles, aptitudes} from './enums';
 import {SimpleChooser, SimpleListChooser} from './standard_components';
 
+const ROLES = [
+  "ASSASSIN",
+  "CHIRURGEON"
+]
 const ROLE_DETAILS = {
   ASSASSIN: {
     "aptitudes": [
@@ -54,7 +57,7 @@ export class AptitudeForm extends React.Component {
           {choices.map((option, index) => {
             if (option.length > 1) {
               return <li><SimpleListChooser
-                selected={this.props.aptitudes[index]}
+                selected={aptitudes[index]}
                 index={index}
                 choices={option}
                 onChange={this.handleChange}
@@ -109,7 +112,7 @@ export class RoleForm extends React.Component {
     return (
       <fieldset>
         <legend>Choose Role</legend>
-        <SimpleChooser selected={role} choices={roles} onChange={this.handleRoleChange} defaultLabel={"--- Choose Role ---"}/>
+        <SimpleChooser selected={role} choices={ROLES} onChange={this.handleRoleChange} defaultLabel={"--- Choose Role ---"}/>
         <AptitudeForm aptitudes={role_aptitudes} role={role} onChange={this.handleAptitudeChange}/>
       </fieldset>
     );

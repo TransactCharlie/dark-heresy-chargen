@@ -18,7 +18,6 @@ export class SimpleListChooser extends React.Component {
 
   render() {
     const selected = this.props.selected;
-    const index = this.state.index;
     const defaultLabel = this.state.defaultLabel;
     const choices = this.state.choices;
 

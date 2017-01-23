@@ -1,7 +1,13 @@
 import React from 'react';
-import {mapObject} from './utils';
+import {SimpleListChooser} from './standard_components';
 
-export const HOMEWORLDS = {
+const HOMEWORLDS = [
+  "FERAL",
+  "HIVE",
+  "HIGHBORN"
+];
+
+const HOMEWORLD_DETAILS = {
   FERAL: {
     display_text: "Feral World",
     description: "Primitive low tech world where the strong survive and feudal customs are prevalent.",
@@ -24,7 +30,7 @@ export const HOMEWORLDS = {
     fate_points: 2,
     fate_roll_target_number: 4
   },
-  HIGH: {
+  HIGHBORN: {
     display_text: "Highborn",
     description: "Silver Spoon",
     characteristic_bonuses: ["FELLOWSHIP", "INTELLIGENCE"],
@@ -34,55 +40,66 @@ export const HOMEWORLDS = {
     wounds: 9,
     fate_points: 4,
     fate_roll_target_number: 10
-  },
+  }
 };
 
 export class DisplayHomeworldDetails extends React.Component {
     render() {
-        const homeworld = this.props.homeworld;
+        const hm = this.props.homeworld;
+        if (hm === "") {return(<div/>);}
 
-        if (homeworld) {
-            return (
-                <div>
-                    <p>{HOMEWORLDS[homeworld].description}</p>
-                    <ul>
-                        <li>Wounds: {HOMEWORLDS[homeworld].wounds}</li>
-                        <li>Fate Points: {HOMEWORLDS[homeworld].fate_points}</li>
-                        <li>Bonus: {HOMEWORLDS[homeworld].bonus}</li>
-                        <li>Homeworld Aptitude: {HOMEWORLDS[homeworld].aptitude}</li>
-                    </ul>
-                </div>
-            );
-        }
-        return (<div/>);
-    }
+        const details = HOMEWORLD_DETAILS[hm];
+
+        return (
+            <div>
+                <p>{details.description}</p>
+                <ul>
+                    <li>Wounds: {details.wounds}</li>
+                    <li>Fate Points: {details.fate_points}</li>
+                    <li>Bonus: {details.bonus}</li>
+                    <li>Homeworld Aptitude: {details.aptitude}</li>
+                </ul>
+            </div>
+        );
+      }
 }
 
 
-export class ChooseHomeworld extends React.Component {
+export class HomeworldForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.state = {};
+    this.setState(this.props.homeworldChoice);
   }
 
-  handleChange(e) {
-    this.props.onChange(e.target.value);
+  handleChange(index, value) {
+    const hm = value;
+    const new_state = {
+      homeworld: hm,
+      characteristic_bonuses: HOMEWORLD_DETAILS[hm].characteristic_bonuses,
+      characteristic_weakness: HOMEWORLD_DETAILS[hm].characteristic_weakness,
+      homeworld_aptitude: HOMEWORLD_DETAILS[hm].aptitude,
+      wounds: HOMEWORLD_DETAILS[hm].wounds,
+      fate_points: HOMEWORLD_DETAILS[hm].fate_points
+    };
+    this.setState(new_state);
+    this.props.onChange(new_state);
   }
 
   render() {
-    const homeworld = this.props.homeworld;
-
+    const hw = this.props.homeworldChoice["homeworld"];
     return (
       <fieldset>
         <legend>Step1: Homeworld</legend>
-        <select value={homeworld} onChange={this.handleChange}>
-          <option disabled value="">-- Select Homeworld --</option>
-
-        {mapObject(HOMEWORLDS, function(k,v) {
-          return <option key={k} value={k}>{v.display_text}</option>;
-         })}
-        </select>
-        <DisplayHomeworldDetails homeworld={homeworld}/>
+        <SimpleListChooser
+          selected={hw}
+          index={null}
+          choices={HOMEWORLDS}
+          onChange={this.handleChange}
+          defaultLabel={"--- Choose a Homeworld ---"}
+        />
+      <DisplayHomeworldDetails homeworld={hw}/>
       </fieldset>
     );
   }
