@@ -1,11 +1,11 @@
 import React from 'react';
 import {SimpleChooser, SimpleListChooser} from './standard_components';
 
-const ROLES = [
+export const ROLES = [
   "ASSASSIN",
   "CHIRURGEON"
 ]
-const ROLE_DETAILS = {
+export const ROLE_DETAILS = {
   ASSASSIN: {
     "aptitudes": [
       ["AGILITY"],

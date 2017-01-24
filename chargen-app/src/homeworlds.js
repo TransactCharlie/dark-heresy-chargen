@@ -1,13 +1,13 @@
 import React from 'react';
 import {SimpleListChooser} from './standard_components';
 
-const HOMEWORLDS = [
+export const HOMEWORLDS = [
   "FERAL",
   "HIVE",
   "HIGHBORN"
 ];
 
-const HOMEWORLD_DETAILS = {
+export const HOMEWORLD_DETAILS = {
   FERAL: {
     display_text: "Feral World",
     description: "Primitive low tech world where the strong survive and feudal customs are prevalent.",
