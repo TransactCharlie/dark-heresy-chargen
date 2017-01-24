@@ -1,14 +1,20 @@
 import React from 'react';
+import {SimpleListChooser} from './standard_components';
 import {mapObject} from './utils';
 
-const BACKGROUNDS = {
+export const BACKGROUNDS = [
+  "OUTCAST",
+  "IMPERIAL_GUARD"
+];
+
+export const BACKGROUND_DETAILS = {
     OUTCAST: {
         display_text: "Outcast",
-        aptitude_choice: ["FIELDCRAFT", "SOCIAL"]
+        aptitudes: ["FIELDCRAFT", "SOCIAL"]
     },
     IMPERIAL_GUARD: {
         display_text: "Imperial Guard",
-        aptitude_choice: ["FIELDCRAFT", "LEADERSHIP"]
+        aptitudes: ["FIELDCRAFT", "LEADERSHIP"]
     }
 };
 
@@ -30,7 +36,7 @@ class ChooseBackgroundAptitude extends React.Component {
             return (
                 <select value={aptitude} onChange={this.handleChange}>
                      <option disabled value="">-- Select Aptitude --</option>
-                    {BACKGROUNDS[background].aptitude_choice.map(function(v) {
+                    {BACKGROUND_DETAILS[background].aptitudes.map(function(v) {
                         return <option key={v} value={v}>{v}</option>;
                     })}
                 </select>
@@ -49,10 +55,10 @@ export class ChooseBackground extends React.Component {
     this.state = props.backgroundChoice;
   }
 
-  handleBackgroundChange(e)
+  handleBackgroundChange(i, v)
   {
       const new_state = {
-          background: e.target.value,
+          background: v,
           aptitude: ""
       };
       this.setState(new_state);
@@ -79,15 +85,13 @@ export class ChooseBackground extends React.Component {
       <fieldset>
         <legend>Choose Background</legend>
 
-        <select
-          value={background}
-          onChange={this.handleBackgroundChange}>
-
-          <option disabled value="">-- Select Background --</option>
-          {mapObject(BACKGROUNDS, function(k,v) {
-            return <option key={k} value={k}>{v.display_text}</option>;
-          })}
-        </select>
+          <SimpleListChooser
+            selected={background}
+            index={0}
+            choices={BACKGROUNDS}
+            onChange={this.handleBackgroundChange}
+            defaultLabel={"--- Choose a Background ---"}
+            />
 
         <ChooseBackgroundAptitude
           aptitude={aptitude}
