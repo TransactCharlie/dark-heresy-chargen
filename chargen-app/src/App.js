@@ -3,6 +3,7 @@ import './App.css';
 import {ChooseBackground} from './backgrounds';
 import {HomeworldForm} from './homeworlds';
 import {RoleForm} from './roles';
+import {AptitudeForm} from './aptitudes';
 import {PrintObject} from './utils';
 
 
@@ -56,6 +57,11 @@ export default class App extends React.Component {
           <HomeworldForm homeworldChoice={homeworldChoice} onChange={this.handleHomeworldChange}/>
           <ChooseBackground backgroundChoice={backgroundChoice} onChange={this.handleBackgroundChange}/>
           <RoleForm roleChoice={roleChoice} onChange={this.handleRoleChange}/>
+          <AptitudeForm
+            role={roleChoice.role}
+            background={backgroundChoice.background}
+            homeworld={homeworldChoice.homeworld}
+          />
           <PrintObject payload={character}/>
         </div>
     );
