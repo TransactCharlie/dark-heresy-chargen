@@ -4,7 +4,8 @@ import {SimpleListChooser} from './standard_components';
 export const HOMEWORLDS = [
   "FERAL",
   "HIVE",
-  "HIGHBORN"
+  "HIGHBORN",
+  "DEATHWORLD"
 ];
 
 export const HOMEWORLD_DETAILS = {
@@ -40,6 +41,17 @@ export const HOMEWORLD_DETAILS = {
     wounds: 9,
     fate_points: 4,
     fate_roll_target_number: 10
+  },
+  DEATHWORLD: {
+    display_text: "Death World",
+    description: "Grew up in hell",
+    characteristic_bonuses: ["TOUGHNESS", "PERCEPTION"],
+    characteristic_weakness: "INFLUENCE",
+    aptitude: "FIELDCRAFT",
+    bonus: "1000 yard stare",
+    wounds: 9,
+    fate_points: 2,
+    fate_roll_target_number: 5
   }
 };
 

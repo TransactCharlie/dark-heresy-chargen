@@ -3,6 +3,7 @@ import {HOMEWORLD_DETAILS} from './homeworlds';
 import {BACKGROUND_DETAILS} from './backgrounds';
 import {ROLE_DETAILS} from './roles';
 import {SimpleListChooser} from './standard_components';
+import {contains} from './utils';
 
 const CHARACTERISTIC_APTITUDES = [
   "STRENGTH",
@@ -17,6 +18,19 @@ const CHARACTERISTIC_APTITUDES = [
   "WILLPOWER"
 ];
 
+export function gen_possible_characteristic_options(fixed_options)
+{
+  const selection = CHARACTERISTIC_APTITUDES.map((a) => {
+      if (!contains(fixed_options, a))
+      {
+        return a;
+      }
+  });
+
+  return selection.filter( (f) => {return f});
+}
+
+
 export class AptitudeForm extends React.Component {
 
   constructor(props) {
@@ -26,21 +40,9 @@ export class AptitudeForm extends React.Component {
     this.state = {
       homeworld: props.homeworld,
       background: props.background,
-      role: props.role
+      role: props.role,
+      aptitudeChoice: props.aptitudeChoice
     };
-  }
-
-  generate_aptitude_choices(choices, selected_aptitudes) {
-    // check that none of the choices are in the selected_aptitudes
-    // If they are substitute that choice for the CHARACTERISTIC_APTITUDES
-    // ( - any selected chracterstic Aptitudes)
-    const valid_characteristic_aptitudes = CHARACTERISTIC_APTITUDES.map((a) => {
-      if (a in selected_aptitudes)
-      {
-        return a;
-      }
-    });
-    return valid_characteristic_aptitudes;
   }
 
   handleChange(i, v) {
@@ -48,16 +50,10 @@ export class AptitudeForm extends React.Component {
   }
 
   render() {
+    var aptitudes = this.props.aptitudeChoice;
     const homeworld = this.props.homeworld;
-    const role = this.props.role;
     const background = this.props.background;
-
-    const hw_details = ( homeworld === "" ? [] : [HOMEWORLD_DETAILS[homeworld].aptitude])
-    const bk_details = ( background === "" ? [] : BACKGROUND_DETAILS[background].aptitudes)
-    const rl_details = ( role === "" ? [] : ROLE_DETAILS[role].aptitudes)
-
-    const aptitudes = [].concat(hw_details, bk_details, rl_details);
-
+    const role = this.props.role;
     return (
       <div>
         <fieldset>
