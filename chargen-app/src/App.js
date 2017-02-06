@@ -34,7 +34,7 @@ export default class App extends React.Component {
       },
       aptitude_base_options: [[], [], [], [], [], [], []],
       aptitude_caclulated_legal_options: [[], [], [], [], [], [], []],
-      selected_aptitudes: [null, null, null, null, null, null, null]
+      selected_aptitudes: ["", "", "", "", "", "", ""]
     };
   }
 
@@ -42,7 +42,14 @@ export default class App extends React.Component {
     var copy_state = Object.create(this.state);
     copy_state["homeworldChoice"] = hm;
     copy_state["aptitude_base_options"][0] = [hm.homeworld_aptitude];
-    copy_state["aptitude_caclulated_legal_options"] = this.calculate_legal_options(copy_state["aptitude_base_options"]);
+
+    const legal_options = this.calculate_legal_options(copy_state["aptitude_base_options"]);
+    const selections = copy_state["selected_aptitudes"];
+    // Clear Homeworld Selection
+    selections[0] = "";
+
+    copy_state["aptitude_caclulated_legal_options"] = legal_options;
+    copy_state["selected_aptitudes"] = this.calculate_selected_aptitudes(legal_options, selections)
     this.setState(copy_state);
   }
 
@@ -50,7 +57,14 @@ export default class App extends React.Component {
     var copy_state = Object.create(this.state);
     copy_state["backgroundChoice"] = bg;
     copy_state["aptitude_base_options"][1] = BACKGROUND_DETAILS[bg.background].aptitudes
-    copy_state["aptitude_caclulated_legal_options"] = this.calculate_legal_options(copy_state["aptitude_base_options"]);
+
+    const legal_options = this.calculate_legal_options(copy_state["aptitude_base_options"]);
+    const selections = copy_state["selected_aptitudes"];
+    // Clear Background selections
+    selections[1] = "";
+
+    copy_state["aptitude_caclulated_legal_options"] = legal_options;
+    copy_state["selected_aptitudes"] = this.calculate_selected_aptitudes(legal_options, selections)
     this.setState(copy_state);
   }
 
@@ -61,7 +75,17 @@ export default class App extends React.Component {
     {
       copy_state["aptitude_base_options"][i] = ROLE_DETAILS[rl.role].aptitudes[i-2]
     }
-    copy_state["aptitude_caclulated_legal_options"] = this.calculate_legal_options(copy_state["aptitude_base_options"]);
+    const legal_options = this.calculate_legal_options(copy_state["aptitude_base_options"]);
+    const selections = copy_state["selected_aptitudes"];
+    // Clear Role selections
+    selections[2] = "";
+    selections[3] = "";
+    selections[4] = "";
+    selections[5] = "";
+    selections[6] = "";
+
+    copy_state["aptitude_caclulated_legal_options"] = legal_options;
+    copy_state["selected_aptitudes"] = this.calculate_selected_aptitudes(legal_options, selections)
     this.setState(copy_state);
   }
 
@@ -89,7 +113,7 @@ export default class App extends React.Component {
         }
         else {
           set_aptitudes.push(cur_option[0]);
-          final_legal_options[i] = cur_option[0];
+          final_legal_options[i] = [cur_option[0]];
         }
       }
       else {
@@ -100,11 +124,11 @@ export default class App extends React.Component {
 
     // We've been through the list once and set up the base unconflicting elements
     // now set the problematic single choices
+    const characteristic_aptitudes = gen_possible_characteristic_options(set_aptitudes);
     for (var i = 0; i < deferred_single_option_queue.length; i++)
     {
       var aptitude_index = deferred_single_option_queue[i];
-      var possibles = gen_possible_characteristic_options(set_aptitudes);
-      final_legal_options[aptitude_index] = possibles;
+      final_legal_options[aptitude_index] = characteristic_aptitudes;
     }
 
     // Work out the multiple options now
@@ -117,7 +141,7 @@ export default class App extends React.Component {
       {
         if (contains(set_aptitudes, options_to_consider[j]))
         {
-          pos_options = pos_options.concat(gen_possible_characteristic_options(set_aptitudes));
+          pos_options = pos_options.concat(characteristic_aptitudes);
         }
         else {
           pos_options.push(options_to_consider[j])
@@ -127,6 +151,45 @@ export default class App extends React.Component {
     }
 
     return final_legal_options;
+  }
+
+  calculate_selected_aptitudes(possibles, selected)
+  {
+    var return_options=["", "", "", "", "", "", ""];
+
+    // Work out if the selected list needs to change based on changes
+    // to the possible options
+
+    // how many possible options do we have?
+    const possible_length = possibles.length;
+
+    var deferred_index_queue = [];
+    // Set any selected entries to the corrosponding single choice selected
+    for (var i = 0; i < possibles.length; i++)
+    {
+      if (possibles[i].length === 1)
+      {
+        return_options[i] = possibles[i][0];
+      }
+      else
+      {
+        deferred_index_queue.push(i);
+      }
+    }
+
+    // Now consider any previously selected options where we have choices
+    for (var i = 0; i < deferred_index_queue.length; i++)
+    {
+      const index = deferred_index_queue[i];
+      const possible_aptitudes = possibles[index];
+      const selected_aptitude = selected[index];
+
+      if ( contains(possible_aptitudes, selected_aptitude) )
+      {
+        return_options[index] = selected_aptitude;
+      }
+    }
+    return return_options;
   }
 
   handleAptitudeChange(ac) {
