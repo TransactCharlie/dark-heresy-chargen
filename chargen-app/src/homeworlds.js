@@ -81,8 +81,7 @@ export class HomeworldForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.state = {};
-    this.setState(this.props.homeworldChoice);
+    this.state = this.props.homeworldChoice;
   }
 
   handleChange(index, value) {
